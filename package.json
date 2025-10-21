@@ -8,5 +8,23 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Achrafcodes/TeamSync.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Achrafcodes/TeamSync/issues"
+  },
+  "homepage": "https://github.com/Achrafcodes/TeamSync#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
 }

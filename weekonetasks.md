@@ -1,24 +1,24 @@
 # 🔐 Authentication Project - Task Breakdown
 
-Timeline: 9 Days | Daily Commitment: 6-8 hour*
+Timeline: 9 Days | Daily Commitment: 6-8 hour\*
 
 ## Phase 1: Core Setup (Days 1-2)
 
 ### Day 1: Project Infrastructure
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
-- [ ] Initialize Node.js/Express server
-- [ ] Set up basic middleware (express.json, express.urlencoded)
-- [ ] Configure MongoDB connection with Mongoose
-- [ ] Create .env file with environment variables
-- [ ] Set up project folder structure
-- [ ] Implement CORS configuration
-- [ ] Create basic health check endpoint
+- [x] Initialize Node.js/Express server
+- [x] Set up basic middleware (express.json, express.urlencoded)
+- [x] Configure MongoDB connection with Mongoose
+- [x] Create .env file with environment variables
+- [x] Set up project folder structure
+- [x] Implement CORS configuration
+- [x] Create basic health check endpoint
 
 ### Day 2: User Model & Validation
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Design User Mongoose schema
 - [ ] Add email, password, username fields with validation
@@ -33,7 +33,7 @@ Deadline: End of Day *
 
 ### Day 3: Password Security & Registration
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Implement bcrypt password hashing (12 rounds)
 - [ ] Create user registration controller
@@ -44,7 +44,7 @@ Deadline: End of Day *
 
 ### Day 4: JWT Login System
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Install and configure jsonwebtoken
 - [ ] Create login controller with credential verification
@@ -55,7 +55,7 @@ Deadline: End of Day *
 
 ### Day 5: Authentication Middleware
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Create JWT verification middleware
 - [ ] Extract token from Authorization header
@@ -70,7 +70,7 @@ Deadline: End of Day *
 
 ### Day 6: Refresh Token System
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Design refresh token storage strategy
 - [ ] Implement refresh token generation
@@ -81,7 +81,7 @@ Deadline: End of Day *
 
 ### Day 7: User Profile & Error Handling
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Create GET user profile endpoint
 - [ ] Implement PUT profile update endpoint
@@ -96,7 +96,7 @@ Deadline: End of Day *
 
 ### Day 8: Security Hardening
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Implement rate limiting on auth endpoints
 - [ ] Add request sanitization middleware
@@ -107,7 +107,7 @@ Deadline: End of Day *
 
 ### Day 9: Testing & Documentation
 
-Deadline: End of Day *
+Deadline: End of Day \*
 
 - [ ] Write API tests with Jest/Supertest
 - [ ] Create comprehensive Postman collection
@@ -139,4 +139,4 @@ Deadline: End of Day *
 - [ ] Full documentation completed
 - [ ] Security measures implemented
 
-Total: 32 specific tasks across 9 day*
+Total: 32 specific tasks across 9 day\*

@@ -2,7 +2,6 @@ import User from '../models/signup.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const Sc = process.env.SECRET_KEY;
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -16,7 +15,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: 'ivalide password' });
     }
 
-    const token = jwt.sign({ userId: user._id }, Sc, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
     console.log(token);
     res.json({ token });
   } catch (err) {

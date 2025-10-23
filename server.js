@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connection from './src/db/connection.js';
 import cors from 'cors';
+import Authrouter from './src/routes/authRoutes.js';
 dotenv.config();
 
 const Port = process.env.PORT || 5000;
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded);
+app.use('/api', Authrouter);
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -17,6 +19,7 @@ app.use(
     credentials: true,
   })
 );
+
 connection().then(() => {
   app.listen(Port, () => {
     console.log(`Server Started at port ${Port}`);

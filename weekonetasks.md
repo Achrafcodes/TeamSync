@@ -21,8 +21,8 @@ Deadline: End of Day \*
 Deadline: End of Day \*
 
 - [x] Design User Mongoose schema
-- [x ] Add email, password, username fields with validation
-- [x ] Set up express-validator middleware
+- [x] Add email, password, username fields with validation
+- [x] Set up express-validator middleware
 - [x] Create registration validation rules
 - [x] Create login validation rules
 - [x] Test validation with API client

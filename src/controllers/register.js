@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export const GetUserInfo = async (req, res) => {
   const { username, email, password } = req.body;
-  console.log(SecretKey);
+  console.log(process.env.SECRET_KEY);
   try {
     let user = await User.findOne({ email: email });
     console.log(user);
@@ -16,7 +16,6 @@ export const GetUserInfo = async (req, res) => {
 
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-    console.log(token);
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: err.message });

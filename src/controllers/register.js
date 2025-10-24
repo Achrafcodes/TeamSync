@@ -1,10 +1,8 @@
 import User from '../models/signup.model.js';
 import jwt from 'jsonwebtoken';
-const SecretKey = process.env.SECRET_KEY;
-const port = process.env.PORT;
+
 export const GetUserInfo = async (req, res) => {
   const { username, email, password } = req.body;
-  console.log(req.body, 'portis', port);
   console.log(SecretKey);
   try {
     let user = await User.findOne({ email: email });
@@ -16,7 +14,7 @@ export const GetUserInfo = async (req, res) => {
     await user.save();
     console.log('User saved successfully');
 
-    const token = jwt.sign({ userId: user._id }, SecretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
     console.log(token);
     res.json({ token });

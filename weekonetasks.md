@@ -35,12 +35,12 @@ Deadline: End of Day \*
 
 Deadline: End of Day \*
 
-- [ ] Implement bcrypt password hashing (12 rounds)
-- [ ] Create user registration controller
-- [ ] Handle duplicate email/username errors
-- [ ] Set proper HTTP status codes for responses
-- [ ] Test registration endpoint thoroughly
-- [ ] Add input sanitization
+- [x] Implement bcrypt password hashing (12 rounds)
+- [x] Create user registration controller
+- [x] Handle duplicate email/username errors
+- [x] Set proper HTTP status codes for responses
+- [x] Test registration endpoint thoroughly
+- [x] Add input sanitization
 
 ### Day 4: JWT Login System
 

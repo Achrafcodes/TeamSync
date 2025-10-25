@@ -15,8 +15,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: 'ivalide password' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-    console.log(token);
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '30min' });
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: err.message });

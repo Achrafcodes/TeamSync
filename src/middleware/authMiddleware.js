@@ -10,6 +10,7 @@ export const registerValidation = () => [
   body('password')
     .notEmpty()
     .withMessage('Password is Requierd!')
+    .escape()
     .isLength({ min: 6 })
     .withMessage('password should be atleast 6 characters'),
 ];

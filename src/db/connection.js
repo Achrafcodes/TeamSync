@@ -12,3 +12,5 @@ const ConnectDb = async () => {
 };
 
 export default ConnectDb;
+
+console.log('hello ');

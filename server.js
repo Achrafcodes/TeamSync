@@ -8,15 +8,22 @@ const app = express();
 
 // ✅ Middleware first
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Add this too
 
-// ✅ Mount routes after middleware
-app.use('/', router);
+// ✅ Add a test route to verify server is working
+app.get('/', (req, res) => {
+  res.json({ message: 'Server is running' });
+});
+
+// ✅ Mount auth routes
+app.use('/api/auth', router); // Changed from '/' to '/api/auth'
 
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`✅ Server listening on port ${process.env.PORT}`);
+      console.log(`✅ MongoDB connected`);
     });
   })
   .catch((err) => {

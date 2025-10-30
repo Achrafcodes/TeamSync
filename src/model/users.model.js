@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      minlength: 6,
       required: true,
       maxlength: 50,
     },
@@ -39,7 +40,7 @@ UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
 
     // we will define the salt
-    const salt = await bcrypt.salt(12);
+    const salt = await bcrypt.genSalt(12);
 
     // we hash the pw
     const hash = await bcrypt.hash(this.password, salt);

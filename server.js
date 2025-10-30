@@ -5,18 +5,11 @@ import mongoose from 'mongoose';
 import router from './src/routes/authroute.js';
 import { Router } from 'express';
 const app = express();
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-// ✅ Middleware first
-app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Add this too
-app.use(express.Router());
-// ✅ Add a test route to verify server is working
-app.get('/', (req, res) => {
-  res.json({ message: 'Server is running' });
-});
-
-// ✅ Mount auth routes
-
+app.use('/', router)
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {

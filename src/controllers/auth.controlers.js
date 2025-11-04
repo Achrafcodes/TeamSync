@@ -40,7 +40,10 @@ export const register = async (req, res) => {
 
     // Generate token
     const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
-
+    const refreshtoken = jwt.sign({ id: newUser._id }, process.env.REFRESH_TOKEN, {
+      expiresIn: '15d',
+    });
+    newUser.refreshToken = refreshtoken;
     res.status(201).json({
       message: 'User created successfully',
       token,

@@ -1,4 +1,3 @@
-import { header } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import User from '../model/users.model.js';
 export const refresh = async (req, res) => {

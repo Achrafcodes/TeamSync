@@ -100,6 +100,7 @@ export const login = async (req, res) => {
     });
     user.refreshToken = refreshtoken;
     await user.save();
+
     res.status(200).json({
       message: 'Login successful',
       accesstoken,
@@ -115,3 +116,28 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Server error during login' });
   }
 };
+export const logout = async (req, res) => {
+
+  try {
+    console.log('test')
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      return res.status(401).json({
+        message: "invalid or unfound token"
+      })
+    }
+
+    const user = await User.findOne({ refreshToken: refreshToken })
+    if (!user) {
+      return res.status(401).json({ message: "no User with this refreshToken" })
+    }
+    user.refreshToken = ""
+    await user.save()
+    return res.status(200).json({
+      message: "user disconected successful"
+    })
+  }
+  catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
+}

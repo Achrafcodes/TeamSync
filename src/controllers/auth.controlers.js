@@ -6,7 +6,7 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     // Validate input
     if (!name || !email || !password) {
@@ -35,7 +35,7 @@ export const register = async (req, res) => {
     }
 
     // Create and save new user (password will be hashed by pre-save hook)
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, email, password, role });
     await newUser.save();
 
     // Generate token
@@ -109,6 +109,7 @@ export const login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     });
   } catch (error) {
@@ -117,27 +118,25 @@ export const login = async (req, res) => {
   }
 };
 export const logout = async (req, res) => {
-
   try {
-    console.log('test')
+    console.log('test');
     const { refreshToken } = req.body;
     if (!refreshToken) {
       return res.status(401).json({
-        message: "invalid or unfound token"
-      })
+        message: 'invalid or unfound token',
+      });
     }
 
-    const user = await User.findOne({ refreshToken: refreshToken })
+    const user = await User.findOne({ refreshToken: refreshToken });
     if (!user) {
-      return res.status(401).json({ message: "no User with this refreshToken" })
+      return res.status(401).json({ message: 'no User with this refreshToken' });
     }
-    user.refreshToken = ""
-    await user.save()
+    user.refreshToken = '';
+    await user.save();
     return res.status(200).json({
-      message: "user disconected successful"
-    })
+      message: 'user disconected successful',
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
-  catch (err) {
-    return res.status(500).json({ message: err.message })
-  }
-}
+};

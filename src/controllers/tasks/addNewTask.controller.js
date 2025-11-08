@@ -1,3 +1,4 @@
-export const AddNewTask = (req, res) => {
-  res.json({ mesage: 'AddNewTask router' });
+export const AddNewTask = async (req, res) => {
+  const { title, description, priority, assignedTo } = req.body;
+  res.json(title);
 };

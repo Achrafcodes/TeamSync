@@ -5,7 +5,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import mongoSanitize from 'express-mongo-sanitize';
 import helmet from 'helmet';
-import router from './src/routes/authroute.js';
+import mainroute from './src/routes/index.js';
 import { logger } from './src/utils/logger.js';
 
 const app = express();
@@ -39,8 +39,7 @@ app.use((req, res, next) => {
 });
 
 // 5️⃣ Routes
-app.use('/', router);
-
+app.use('/api', mainroute);
 // 6️⃣ Error handling
 app.use((err, req, res, next) => {
   logger.error(`Error: ${err.message}`, { stack: err.stack });

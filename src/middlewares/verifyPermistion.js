@@ -12,7 +12,6 @@ export const verifyPerm = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     req.user = decoded; // store decoded payload (id, etc.) in req.user
-    console.log(req.user);
     const user = await User.findOne({ _id: req.user.id });
     if (user.role !== 'admin') return res.status(403).json('access denied');
 

@@ -20,18 +20,10 @@ const TasksSchema = new mongoose.Schema(
       enum: ['low', 'medium', 'high'],
     },
     assignedTo: {
-      name: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
+      type: String,
     },
     createdBy: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }

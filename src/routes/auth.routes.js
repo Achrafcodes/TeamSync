@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { register, login, logout } from '../controllers/auth.controlers.js';
+import { register, login, logout } from '../controllers/auth/auth.controlers.js';
 import { verifyToken } from '../middlewares/verifiyToken.js';
-import User from '../model/users.model.js';
-import { userPage } from '../controllers/user.controlers.js';
-import { refresh } from '../controllers/refresh.controlers.js';
+import { userPage } from '../controllers/user/user.controlers.js';
+import { refresh } from '../controllers/auth/refresh.controlers.js';
 import rateLimit from 'express-rate-limit';
 const router = Router();
 const limmiter = rateLimit({

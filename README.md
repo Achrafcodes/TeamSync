@@ -1,155 +1,174 @@
-Task Management Backend (MERN)
-📌 Overview
+# Task Manager API
 
-This is a RESTful backend API for a Task Management system built with Node.js, Express, and MongoDB (Mongoose).
-It supports CRUD operations on tasks, user authentication, and role-based authorization for admin and regular users.
+A RESTful API for managing tasks with user authentication, role-based access control, and comprehensive task operations.
 
-The backend is modular, easy to scale, and ready to connect with any frontend application.
+## Features
 
-🚀 Features
+- 🔐 User authentication with JWT tokens
+- 🔄 Token refresh mechanism
+- ✅ CRUD operations for tasks
+- 👥 Role-based access control (User/Admin)
+- 🛡️ Middleware-based authorization
+- 📝 Request logging
 
-Tasks CRUD
+## Tech Stack
 
-Create, Read, Update, Delete tasks
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB (Mongoose ODM)
+- **Authentication:** JWT (JSON Web Tokens)
 
-Partial updates using PATCH
+## Project Structure
 
-User Management
+```
+├── server.js              # Application entry point
+├── package.json           # Dependencies and scripts
+└── src
+    ├── controllers        # Business logic handlers
+    │   ├── auth           # Authentication controllers
+    │   ├── tasks          # Task management controllers
+    │   └── user           # User management controllers
+    ├── middlewares        # Auth & permission middleware
+    ├── model              # Database schemas
+    ├── routes             # API route definitions
+    └── utils              # Helper utilities
+```
 
-Register, login, and manage users
+## Getting Started
 
-Role-based permissions (admin vs regular user)
+### Prerequisites
 
-Authentication & Authorization
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
 
-JWT-based authentication
+### Installation
 
-Protected routes for admin-only operations
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
 
-Validation & Error Handling
-
-Validates requests and sends meaningful error messages
-
-Utilities
-
-Logger for tracking API activity
-
-Ready for production
-
-Structured folders, clear separation of concerns
-
-📁 Project Structure
-.
-├── server.js              # Entry point
-├── package.json
-├── src
-│   ├── controllers        # Handles request logic
-│   │   ├── auth
-│   │   │   ├── auth.controllers.js
-│   │   │   └── refresh.controllers.js
-│   │   ├── tasks
-│   │   │   ├── addNewTask.controller.js
-│   │   │   ├── updateTask.controller.js
-│   │   │   ├── deleteTask.controller.js
-│   │   │   ├── getTasks.controller.js
-│   │   │   ├── findTaskbyId.controller.js
-│   │   │   └── admin.controller.js
-│   │   └── user
-│   │       └── user.controllers.js
-│   ├── middlewares       # Authentication & permission checks
-│   │   ├── verifyToken.js
-│   │   └── verifyPermission.js
-│   ├── model             # Mongoose models
-│   │   ├── tasks.model.js
-│   │   └── users.model.js
-│   ├── routes            # Express routes
-│   │   ├── auth.routes.js
-│   │   ├── admin.routes.js
-│   │   ├── user.routes.js
-│   │   └── index.js
-│   └── utils             # Utilities like logging
-│       └── logger.js
-
-⚡ Installation
-
-Clone the repository:
-
-git clone https://github.com/Achrafcodes/TeamSync/
-cd TeamSync
-
-
-Install dependencies:
-
+2. Install dependencies:
+```bash
 npm install
+```
 
+3. Create a `.env` file in the root directory:
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/taskmanager
+JWT_SECRET=your_jwt_secret_key
+JWT_REFRESH_SECRET=your_refresh_secret_key
+JWT_EXPIRY=15m
+JWT_REFRESH_EXPIRY=7d
+```
 
-Create a .env file with:
+4. Start the server:
+```bash
+npm start
+```
 
-MONGO_URI=<your-mongodb-uri>
-JWT_SECRET=<your-secret-key>
-PORT=5000
+## API Endpoints
 
+### Authentication
 
-Start the server:
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Login user |
+| POST | `/api/auth/refresh` | Refresh access token |
 
+### Tasks
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/tasks` | Get all tasks | ✅ |
+| GET | `/api/tasks/:id` | Get task by ID | ✅ |
+| POST | `/api/tasks` | Create new task | ✅ |
+| PUT | `/api/tasks/:id` | Update task | ✅ |
+| DELETE | `/api/tasks/:id` | Delete task | ✅ |
+
+### Admin
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/admin/tasks` | Get all tasks (admin) | ✅ Admin |
+| GET | `/api/admin/users` | Get all users | ✅ Admin |
+
+### User
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/user/profile` | Get user profile | ✅ |
+| PUT | `/api/user/profile` | Update user profile | ✅ |
+
+## Middleware
+
+### `verifyToken`
+Validates JWT tokens and attaches user information to the request object.
+
+### `verifyPermission`
+Checks user roles and permissions for protected routes.
+
+## Models
+
+### User Model
+```javascript
+{
+  username: String,
+  email: String,
+  password: String (hashed),
+  role: String (user/admin),
+  createdAt: Date
+}
+```
+
+### Task Model
+```javascript
+{
+  title: String,
+  description: String,
+  status: String,
+  userId: ObjectId,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+## Development
+
+### Run in development mode:
+```bash
 npm run dev
+```
 
+### Project Scripts
+- `npm start` - Start production server
+- `npm run dev` - Start development server with hot reload
+- `npm test` - Run tests
 
-Server will run on http://localhost:5000.
+## Security Features
 
-🛠️ API Endpoints
-Auth
+- Password hashing with bcrypt
+- JWT-based authentication
+- Token refresh mechanism
+- Role-based access control
+- Request validation
 
-POST /auth/register → Create a new user
+## Contributing
 
-POST /auth/login → Login and get JWT token
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-POST /auth/refresh → Refresh token
+## License
 
-Tasks
+This project is licensed under the MIT License.
 
-GET /tasks → Get all tasks (admin) or user’s tasks
+## Contact
 
-GET /tasks/:id → Get task by ID
-
-POST /tasks → Create a new task
-
-PATCH /tasks/:id → Update task partially
-
-DELETE /tasks/:id → Delete a task
-
-Users
-
-GET /users → Get all users (admin only)
-
-GET /users/:id → Get user by ID
-
-PATCH /users/:id → Update user info (admin or self)
-
-🛡️ Security
-
-JWT-based authentication
-
-Role-based access control (admin vs regular users)
-
-Data validation and error handling
-
-🔧 Technologies Used
-
-Node.js & Express
-
-MongoDB & Mongoose
-
-JWT for authentication
-
-Nodemon for development
-
-Winston / custom logger for logging
-
-📝 Notes
-
-Designed to work with any frontend (React, Next.js, Vue, etc.)
-
-Modular structure for easy scalability
-
-Ready for further enhancements like notifications, filtering, pagination, and analytics
+For questions or support, please open an issue in the repository.
